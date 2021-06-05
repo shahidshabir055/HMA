@@ -1,0 +1,73 @@
+<div class="fluid-container">
+  <div class="row">
+    <div class="col-1">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-11">
+      <div class="row h-10  mt-1">
+        <div class="col-sm">
+          <h2>Clients</h2>
+        </div>
+        <div class="col-sm-8 mt-1">
+         <input type="text" class="float-right" placeholder="Search by Client name or client Id">
+        </div>
+        <div class="col-sm mr-1">
+          <button class="btn btn-success float-right">+ add Client</button>
+        </div>
+      </div>
+      <div class="row h-10 bg-light mt-1">
+        <div class="col-md">
+          <h2>Clients</h2>
+        </div>
+        <div class="col-md ">
+          <div class="d-inline-block mr-1 float-right" ngbDropdown #myDrop="ngbDropdown">
+            <button class="btn btn-outline-primary float-right" id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">Filter</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownManual">
+              <button ngbDropdownItem>Everyone</button>
+              <button ngbDropdownItem>Another Action</button>
+              <button ngbDropdownItem>Something else is here</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mat-elevation-z9 ">
+        <table style="color:black; background-color:grey" mat-table [dataSource]="dataSource" matSort
+          class="mat-elevation-z8">
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="ClientId">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Client Id </th>
+            <td mat-cell *matCellDef="let element"> {{element.Id}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> company Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="creationDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>creationDate </th>
+            <td mat-cell *matCellDef="let element"> {{element.creationDate}} </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef=" assignedMember">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> assignedMember </th>
+            <td mat-cell *matCellDef="let element"> {{element. assignedMember}} </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      </div>
+
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>
